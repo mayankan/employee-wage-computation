@@ -2,7 +2,7 @@
     @Author: Mayank Anand
     @Date: 2022-03-08 15:00:00
     @Last Modified by: Mayank Anand
-    @Last Modified time: 2022-03-08 16:40:00
+    @Last Modified time: 2022-03-08 16:49:00
     @Title : Employee Wage Computation
     """
 import random as rd
@@ -14,37 +14,31 @@ PART_TIME_HRS = 4
 
 def get_attendance():
     """
-    Gets Attendance whether employee is present or absent using random function.
-    :return: True if employee is present else false.
-    """
-    return True if rd.randint(0, 1) == 1 else False
-
-
-def get_work_hrs():
-    """
-    Gets Working Hours whether employee is working Full Time or Part Time.
+    Gets Attendance whether employee is present, working part-time or absent using random function.
     Return:
-        True if employee is working Full Day else False.
+        2 if employee is working full day, 1 if part-time and 0 if absent.
     """
-    return True if rd.randint(0, 1) == 1 else False
+    return rd.randint(0, 2)
 
 
-def calc_daily_wage(work_hrs):
+def calc_daily_wage():
     """
-    Calculates Daily Wage for Employee working full day or part-time.
-    Parameter:
-        Boolean value having True if employee is working Full Day else Part Time.
+    Calculates Daily Wage for Employee working full day or part-time using case statement.
     Return:
         Wage per hour multiplied to Full Day Working Hours or Part Time Working Hours
      if employee is present else 0.
     """
-    wage = WAGE_PER_HR * FULL_DAY_HRS if work_hrs else WAGE_PER_HR * PART_TIME_HRS
-    return wage if get_attendance() else 0
+    wage_calc = {
+        2: WAGE_PER_HR * FULL_DAY_HRS,
+        1: WAGE_PER_HR * PART_TIME_HRS,
+        0: 0
+    }
+    return wage_calc.get(get_attendance())
 
 
 def main():
     print("Welcome to Employee Wage Computation Program")
-    print("Daily wage for Employee is {}.".format(calc_daily_wage(get_work_hrs())))
+    print("Daily wage for Employee is {}.".format(calc_daily_wage()))
 
 
 if __name__ == "__main__":
