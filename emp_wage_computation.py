@@ -7,6 +7,9 @@
     """
 import random as rd
 
+WAGE_PER_HR = 20
+FULL_DAY_HRS = 8
+
 
 def get_attendance():
     """
@@ -16,9 +19,13 @@ def get_attendance():
     return True if rd.randint(0, 1) == 1 else False
 
 
+def calc_daily_wage():
+    return WAGE_PER_HR * FULL_DAY_HRS if get_attendance() else 0
+
+
 def main():
     print("Welcome to Employee Wage Computation Program")
-    print("Employee is present.") if get_attendance() else print("Employee is absent.")
+    print("Daily wage for Employee is {}.".format(calc_daily_wage()))
 
 
 if __name__ == "__main__":
