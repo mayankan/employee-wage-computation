@@ -2,7 +2,7 @@
     @Author: Mayank Anand
     @Date: 2022-03-08 15:00:00
     @Last Modified by: Mayank Anand
-    @Last Modified time: 2022-03-08 17:45:00
+    @Last Modified time: 2022-03-08 17:47:00
     @Title : Employee Wage Computation
     """
 import random as rd
@@ -46,13 +46,14 @@ def calc_monthly_wage():
         Monthly Wage and Total Working Hours calculated by daily wage function
         and iterating it to working days constant.
     """
-    total_wage = 0
     day_count = 0
+    daily_wage = []
     while WAGE_PER_HR > day_count:
-        total_wage += calc_daily_wage()
-        if total_wage // 20 > 100:
+        daily_wage.append(calc_daily_wage())
+        if sum(daily_wage) // 20 > 100:
             return 2000, 100
         day_count += 1
+    total_wage = sum(daily_wage)
     working_hrs = (total_wage // 20)
     return total_wage, working_hrs
 
