@@ -2,7 +2,7 @@
     @Author: Mayank Anand
     @Date: 2022-03-08 15:00:00
     @Last Modified by: Mayank Anand
-    @Last Modified time: 2022-03-08 17:02:00
+    @Last Modified time: 2022-03-08 17:15:00
     @Title : Employee Wage Computation
     """
 import random as rd
@@ -11,6 +11,7 @@ WAGE_PER_HR = 20
 FULL_DAY_HRS = 8
 PART_TIME_HRS = 4
 WORKING_DAYS = 20
+WORKING_HRS = 100
 
 
 def get_attendance():
@@ -48,6 +49,9 @@ def calc_monthly_wage():
     day_count = 0
     while WAGE_PER_HR > day_count:
         total_wage += calc_daily_wage()
+        print(total_wage)
+        if total_wage // 20 > 100:
+            return 2000
         day_count += 1
     return total_wage
 
