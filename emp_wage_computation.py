@@ -2,7 +2,7 @@
     @Author: Mayank Anand
     @Date: 2022-03-08 15:00:00
     @Last Modified by: Mayank Anand
-    @Last Modified time: 2022-03-08 17:52:00
+    @Last Modified time: 2022-03-08 17:57:00
     @Title : Employee Wage Computation
     """
 import random as rd
@@ -51,7 +51,7 @@ def calc_monthly_wage():
     while WAGE_PER_HR > day_count:
         daily_wage[day_count] = calc_daily_wage()
         if sum(daily_wage.values()) // 20 > 100:
-            return 2000, 100
+            return 2000, daily_wage
         day_count += 1
     total_wage = sum(daily_wage.values())
     return total_wage, daily_wage
