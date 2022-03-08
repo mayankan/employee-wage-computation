@@ -2,7 +2,7 @@
     @Author: Mayank Anand
     @Date: 2022-03-08 15:00:00
     @Last Modified by: Mayank Anand
-    @Last Modified time: 2022-03-08 17:34:00
+    @Last Modified time: 2022-03-08 17:45:00
     @Title : Employee Wage Computation
     """
 import random as rd
@@ -61,7 +61,7 @@ def main():
     print("Welcome to Employee Wage Computation Program")
     total_wage, working_hrs = calc_monthly_wage()
     print("Monthly Wage and Total Working Hours for Employee are {} and {} ."
-          .format(calc_monthly_wage()[0], calc_monthly_wage()[1]))
+          .format(total_wage, working_hrs))
 
 
 if __name__ == "__main__":
