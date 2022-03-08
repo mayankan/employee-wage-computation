@@ -9,6 +9,10 @@ import random as rd
 
 
 def get_attendance():
+    """
+    Gets Attendance whether employee is present or absent using random function.
+    :return: True if employee is present else false.
+    """
     return True if rd.randint(0, 1) == 1 else False
 
 
