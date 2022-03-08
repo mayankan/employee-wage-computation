@@ -2,7 +2,7 @@
     @Author: Mayank Anand
     @Date: 2022-03-08 15:00:00
     @Last Modified by: Mayank Anand
-    @Last Modified time: 2022-03-08 17:47:00
+    @Last Modified time: 2022-03-08 17:52:00
     @Title : Employee Wage Computation
     """
 import random as rd
@@ -43,26 +43,29 @@ def calc_monthly_wage():
     Calculates Monthly Wage and Total Working Hours for Employee working full day,
     part-time or absent using daily wage function and iterating it to working days constant.
     Return:
-        Monthly Wage and Total Working Hours calculated by daily wage function
+        Monthly Wage and Daily Wage dictionary calculated by daily wage function
         and iterating it to working days constant.
     """
     day_count = 0
-    daily_wage = []
+    daily_wage = {}
     while WAGE_PER_HR > day_count:
-        daily_wage.append(calc_daily_wage())
-        if sum(daily_wage) // 20 > 100:
+        daily_wage[day_count] = calc_daily_wage()
+        if sum(daily_wage.values()) // 20 > 100:
             return 2000, 100
         day_count += 1
-    total_wage = sum(daily_wage)
-    working_hrs = (total_wage // 20)
-    return total_wage, working_hrs
+    total_wage = sum(daily_wage.values())
+    return total_wage, daily_wage
 
 
 def main():
     print("Welcome to Employee Wage Computation Program")
-    total_wage, working_hrs = calc_monthly_wage()
+    total_wage, daily_wage = calc_monthly_wage()
+    working_hrs = (total_wage // 20)
     print("Monthly Wage and Total Working Hours for Employee are {} and {} ."
           .format(total_wage, working_hrs))
+    print("Daily Wage for Employee is: ")
+    for day, wage in daily_wage.items():
+        print(day+1, " - ", wage)
 
 
 if __name__ == "__main__":
