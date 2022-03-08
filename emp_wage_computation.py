@@ -20,6 +20,10 @@ def get_attendance():
 
 
 def calc_daily_wage():
+    """
+    Calculates Daily Wage for Employee working full day.
+    :return: Wage per hour multiplied to Full Day Working Hours if employee is present else 0.
+    """
     return WAGE_PER_HR * FULL_DAY_HRS if get_attendance() else 0
 
 
