@@ -1,8 +1,8 @@
 """
     @Author: Mayank Anand
-    @Date: 2022-03-08 15:00:00
+    @Date: 2022-03-08
     @Last Modified by: Mayank Anand
-    @Last Modified time: 2022-03-08 17:57:00
+    @Last Modified time: 2022-03-08
     @Title : Employee Wage Computation
     """
 import random as rd
@@ -16,14 +16,23 @@ WORKING_HRS = 100
 
 def get_attendance():
     """
-    Gets Attendance whether employee is present, working part-time or absent using random function.
+    Gets Attendance whether employee is present or absent using random function.
     Return:
-        2 if employee is working full day, 1 if part-time and 0 if absent.
+        True if employee is present else false.
     """
-    return rd.randint(0, 2)
+    return True if rd.randint(0, 1) == 1 else False
 
 
-def calc_daily_wage():
+def get_work_hrs():
+    """
+    Gets Working Hours whether employee is working Full Time or Part Time.
+    Return:
+        True if employee is working Full Day else False.
+    """
+    return True if rd.randint(0, 1) == 1 else False
+
+
+def calc_daily_wage(work_hrs):
     """
     Calculates Daily Wage for Employee working full day or part-time using case statement.
     Return:
@@ -31,11 +40,14 @@ def calc_daily_wage():
      if employee is present else 0.
     """
     wage_calc = {
-        2: WAGE_PER_HR * FULL_DAY_HRS,
-        1: WAGE_PER_HR * PART_TIME_HRS,
-        0: 0
+        True: FULL_DAY_HRS * WAGE_PER_HR,
+        False: PART_TIME_HRS * WAGE_PER_HR
     }
-    return wage_calc.get(get_attendance())
+    attendance = {
+        True: wage_calc.get(work_hrs),
+        False: 0
+    }
+    return attendance.get(get_attendance())
 
 
 def calc_monthly_wage():
@@ -48,8 +60,8 @@ def calc_monthly_wage():
     """
     day_count = 0
     daily_wage = {}
-    while WAGE_PER_HR > day_count:
-        daily_wage[day_count] = calc_daily_wage()
+    while WORKING_DAYS > day_count:
+        daily_wage[day_count] = calc_daily_wage(get_work_hrs())
         if sum(daily_wage.values()) // 20 > 100:
             return 2000, daily_wage
         day_count += 1
