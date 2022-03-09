@@ -38,8 +38,11 @@ def calc_daily_wage(work_hrs):
         Wage per hour multiplied to Full Day Working Hours or Part Time Working Hours
      if employee is present else 0.
     """
-    wage = WAGE_PER_HR * FULL_DAY_HRS if work_hrs else WAGE_PER_HR * PART_TIME_HRS
-    return wage if get_attendance() else 0
+    if get_attendance():
+        wage = WAGE_PER_HR * FULL_DAY_HRS if work_hrs else WAGE_PER_HR * PART_TIME_HRS
+        return wage
+    else:
+        return 0
 
 
 def main():
