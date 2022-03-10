@@ -67,7 +67,7 @@ def calc_monthly_wage():
         if total_wage // WAGE_PER_HR > WORKING_HRS:
             return WORKING_HRS * WAGE_PER_HR, WORKING_HRS
         day_count += 1
-    working_hrs = (total_wage // 20)
+    working_hrs = (total_wage // WAGE_PER_HR)
     return total_wage, working_hrs
 
 
