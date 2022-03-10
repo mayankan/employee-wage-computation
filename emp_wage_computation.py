@@ -43,6 +43,7 @@ def calc_daily_wage(work_hrs):
         True: FULL_DAY_HRS * WAGE_PER_HR,
         False: PART_TIME_HRS * WAGE_PER_HR
     }
+    # Making second dictionary attendance to call wage_calc dictionary in case employee is present.
     attendance = {
         True: wage_calc.get(work_hrs),
         False: 0
@@ -61,8 +62,9 @@ def calc_monthly_wage():
     day_count = 0
     while WORKING_DAYS > day_count:
         total_wage += calc_daily_wage(get_work_hrs())
-        if total_wage // 20 > 100:
-            return 2000
+        # Checking if total worked hours by employee is greater than allowed working hours.
+        if total_wage // WAGE_PER_HR > WORKING_HRS:
+            return WORKING_HRS * WAGE_PER_HR
         day_count += 1
     return total_wage
 
